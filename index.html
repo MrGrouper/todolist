@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<body>
+    <div id="content"></div>
+    <div id="formContainer">
+        <div id="formHeader">
+            <div id="formTitle">New Task</div>
+        </div>
+    <form id="form">
+        <div>
+          <label>
+            <input type="checkbox" name="status" id="status">
+          </label>
+        </div>
+        <div>
+          <label>
+            Title:
+            <input type="text" name="title" required maxlength="100" id="title">
+          </label>
+        </div>
+        <div>
+          <label>
+            Due Date:
+            <input type="date" name="due-date" id="dueDate">
+          </label>
+        </div>
+        <div>
+          <label>
+            Project:
+            <select name="project" id='project'>
+              <option value="">All</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <button type="button" name="close" id="closeBtn">close</button>
+        </div>
+        <div>
+            <button type="submit" name="submit">add task</button>
+          </div>
+      </form>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
