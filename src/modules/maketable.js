@@ -94,7 +94,6 @@ function loadTable() {
    $title.value = '';
    $dueDate.value = '';
    document.querySelector("#dueDate").reset;
-   $project.value = '';
     document.querySelector("#itemFormContainer").style.display = "none";
   }
 
