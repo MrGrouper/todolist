@@ -1,7 +1,7 @@
 import moment from "moment";
 function loadTable() {
   let myList = [];
-  let projectList = [{ projectTitle: "All" }];
+  let projectList = [{ projectTitle: "none" }];
   let tableStatus = "";
   let tableStatusClass = "";
   let filterOn = "all";
@@ -38,17 +38,23 @@ function loadTable() {
 
   //Table Btns
   $table.addEventListener("click", (e) => {
-      if (e.target.innerHTML === "Delete") {
-        let currentTargetTitle =
-          e.target.parentNode.parentNode.childNodes[1].innerText;
+    if (e.target.innerHTML === "Delete") {
+      let currentTargetTitle =
+        e.target.parentNode.parentNode.childNodes[1].innerText;
       deleteItem(findItem(myList, currentTargetTitle));
-    } else if (e.target.id === "status") {
-        let currentTargetTitle =
+    } else {
+      return;
+    }
+    makeTable();
+  });
+
+  $table.addEventListener("click", (e) => {
+    if (e.target.id === "status") {
+      let currentTargetTitle =
         e.target.parentNode.parentNode.parentNode.childNodes[1].innerText;
-       changeStatus(findItem(myList, currentTargetTitle))
-    return
-     
-      
+      deleteItem(findItem(myList, currentTargetTitle));
+    } else {
+      return;
     }
 
     makeTable();
@@ -63,9 +69,10 @@ function loadTable() {
       let currentTargetTitle = e.target.parentNode.childNodes[1].innerText;
       filterOn = `${currentTargetTitle}`;
     }
-
+    console.log(filterOn);
     makeProjectList();
     makeTable();
+    filterTable();
   });
   document.querySelector("#sideBarContainer").addEventListener("click", (e) => {
     if (e.target.innerHTML === "Today") {
@@ -74,12 +81,10 @@ function loadTable() {
       filterOn = "week";
     } else if (e.target.innerHTML === "All") {
       filterOn = "all";
-    } else if (e.target.innerHTML === "Completed") {
-      filterOn = "completed";
     }
-
     makeProjectList();
     makeTable();
+    filterTable();
   });
   class Item {
     constructor(title, dueDate, project, status) {
@@ -91,14 +96,14 @@ function loadTable() {
   }
 
   function closeItemForm() {
-   $title.value = '';
-   $dueDate.value = '';
-   document.querySelector("#dueDate").reset;
+    $title.value = "";
+    $dueDate.value = "";
+    document.querySelector("#dueDate").reset;
     document.querySelector("#itemFormContainer").style.display = "none";
   }
 
   function closeProjectForm() {
-    $projectTitle.value = '';
+    $projectTitle.value = "";
     document.querySelector("#projectFormContainer").style.display = "none";
   }
 
@@ -108,29 +113,34 @@ function loadTable() {
     myList.push(newItem);
   }
 
-  function changeStatus(currentItem){
-      console.log(currentItem)
-      if(myList[currentItem].status === 'complete')
-         {return myList[currentItem].status = 'incomplete'}
-         else{
-            return myList[currentItem].status = 'complete'
-
-
+  function changeStatus(currentItem) {
+    //   if(myList[currentItem].status === 'complete')
+    //      {return myList[currentItem].status = 'incomplete'}
+    //      else{
+    //         return myList[currentItem].status = 'complete'
+    //     }
   }
-}
 
   function deleteItem(currentItem) {
     myList.splice(currentItem, 1);
   }
 
   function filterTable() {
+    let checkArray = document.querySelectorAll("#itemTable input:nth-child(1)");
     if (filterOn === "all") {
+      for (const element of checkArray) {
+        if (element.checked) {
+          element.parentNode.parentNode.parentNode.style.display = "none";
+        } else {
+          element.parentNode.parentNode.parentNode.style.display = "inherit";
+        }
+      }
       return;
     } else if (filterOn === "today") {
       const today = moment(new Date()).format("YYYY-MM-DD");
-      console.log(today, "today");
+
       let array = document.querySelectorAll("#itemTable td:nth-child(2)");
-      console.log(array, "array");
+
       for (const element of array) {
         if (element.innerHTML !== today) {
           element.parentNode.style.display = "none";
@@ -139,36 +149,25 @@ function loadTable() {
     } else if (filterOn === "week") {
       const week = moment(new Date()).add(7, "days").format("YYYY-MM-DD");
       let array = document.querySelectorAll("#itemTable td:nth-child(2)");
-      console.log(week);
+
       for (const element of array) {
-        console.log(moment(String(element.innerHTML)).isBefore(String(week)));
         if (!moment(String(element.innerHTML)).isBefore(String(week))) {
           element.parentNode.style.display = "none";
         }
       }
 
       moment(new Date()).add(7, "days").format("YYYY-MM-DD");
-    } else if(filterOn === 'week') {
+    } else {
       let array = document.querySelectorAll("#itemTable td:nth-child(3)");
+      console.log(array);
       for (const element of array) {
+        console.log(element.innerHTML);
         if (element.innerHTML !== filterOn) {
           element.parentNode.style.display = "none";
         }
       }
-    } else if (filterOn === 'completed'){
-        let array = document.querySelectorAll("#itemTable form:nth-child(1)");
-    
-    for (const element of array) {
-        if (!element.checked) {
-          element.parentNode.parentNode.style.display = "none";
-        }
-      
-
-    
+    }
   }
-}
-  }
-
 
   function makeTable() {
     if (myList.length > 0) {
@@ -199,7 +198,6 @@ function loadTable() {
         `;
       $table.insertAdjacentHTML("afterbegin", itemData);
     });
-    filterTable();
   }
 
   function findItem(array, titleToFind) {
@@ -218,7 +216,6 @@ function loadTable() {
   function addProjectToList() {
     const newProject = new Project($projectTitle.value);
     projectList.push(newProject);
-    console.log(projectList);
   }
 
   function makeProjectList() {

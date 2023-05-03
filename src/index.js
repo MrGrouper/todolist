@@ -5,16 +5,10 @@ import loadTable from './modules/maketable';
 
 
 
-function openForm(ContainerID) {
-    console.log('hey')
-    document.getElementById(ContainerID).style.display = "block";
-    console.log(document.getElementById(ContainerID))
-}
 
 function closeForm(formID) {
     let form = document.getElementById(formID);
     form.reset();
-    console.log(form.parentNode);
     form.parentNode.style.display = "none";
 }
 
@@ -22,8 +16,8 @@ function closeForm(formID) {
 function navClick(){
     const addItemBtn = document.getElementById('addItemBtn');
     const addProjectBtn = document.getElementById('addProjectBtn');
-    // const closeItemBtn = document.getElementById('itemCloseBtn')
-    // const closeProjectBtn = document.getElementById('projectCloseBtn')
+    const closeItemBtn = document.getElementById('itemCloseBtn')
+    const closeProjectBtn = document.getElementById('projectCloseBtn')
 
 
     addItemBtn.addEventListener('click', () => {
@@ -32,8 +26,8 @@ function navClick(){
     addProjectBtn.addEventListener('click', () => {
         document.getElementById('projectFormContainer').style.display = "block";
     });
-    // closeItemBtn.addEventListener('click', closeForm('itemForm'));
-    // closeProjectBtn.addEventListener('click', closeForm('projectForm'));
+    closeItemBtn.addEventListener('click', closeForm('itemForm'));
+    closeProjectBtn.addEventListener('click', closeForm('projectForm'));
     
 }
 

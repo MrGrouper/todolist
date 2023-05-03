@@ -1,4 +1,4 @@
-const menuOptions = ['All', 'Today', 'Week', 'Completed'];
+const menuOptions = ['All', 'Today', 'Week'];
 
 
 function createHeader(){
