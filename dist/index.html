@@ -7,45 +7,60 @@
     <title>To Do List</title>
 </head>
 <body>
-    <div id="content"></div>
-    <div id="formContainer">
-        <div id="formHeader">
-            <div id="formTitle">New Task</div>
+    <div id="content">
+    <div class="formContainer" id="itemFormContainer">
+        <div class="formHeader" id="itemFormHeader">
+            <div class="formTitle" id="itemFormTitle">New Task</div>
         </div>
-    <form id="form">
-        <div>
-          <label>
-            <input type="checkbox" name="status" id="status">
-          </label>
-        </div>
+    <form class="form" id="itemForm">
         <div>
           <label>
             Title:
-            <input type="text" name="title" required maxlength="100" id="title">
+            <input type="text" name="title" required maxlength="100" class="formInputTitle formInput" id="title">
           </label>
-        </div>
+          </div>
         <div>
           <label>
             Due Date:
-            <input type="date" name="due-date" id="dueDate">
+            <input type="date" name="due-date" id="dueDate" class="formInput">
           </label>
         </div>
         <div>
           <label>
             Project:
-            <select name="project" id='project'>
-              <option value="">All</option>
+            <select name="project" id='project' class="formInput" required>
+              <option value="All" selected>All</option>
             </select>
           </label>
         </div>
         <div>
-          <button type="button" name="close" id="closeBtn">close</button>
+          <button type="button" name="close" id="itemCloseBtn" class="closeBtn">close</button>
         </div>
         <div>
-            <button type="submit" name="submit">add task</button>
+            <button type="submit" name="submit" id="itemSubmitBtn" class="submitBtn">add task</button>
           </div>
       </form>
     </div>
+      <div id="projectFormContainer" class="formContainer">
+        <div id="projectFormHeader" class="formHeader">
+            <div id="projectFormTitle" class="formTitle">New Project</div>
+        </div>
+        <form id="projectForm" class="form">
+            <div>
+              <label>
+                Project Name:
+                <input type="text" name="title" required maxlength="100" class="formInputTitle" id="projectFormInputTitle" required>
+              </label>
+            </div>
+            <div>
+          <button type="button" name="close" id="projectCloseBtn" class="closeBtn">close</button>
+        </div>
+        <div>
+            <button type="submit" name="submit" id="projectSubmitBtn" class="submitBtn">add project</button>
+          </div>
+      </form>
+    </div>
+</div>
 
     <script src="main.js"></script>
 </body>

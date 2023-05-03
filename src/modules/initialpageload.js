@@ -1,4 +1,4 @@
-const menuOptions = ['All', 'Today', 'Week'];
+const menuOptions = ['All', 'Today', 'Week', 'Completed'];
 
 
 function createHeader(){
@@ -35,13 +35,13 @@ function createSideBar(){
 
 function createProjectList(){
     const projectListContainer = document.createElement('div');
-    projectListContainer.setAttribute = ('id', 'projectListContainer');
+    projectListContainer.id = 'projectListContainer';
     const projectHeading = document.createElement('h2');
     projectHeading.setAttribute('id', 'projectHeading');
-    projectHeading.innerHTML='Projects (put a drop down thing here)';
+    projectHeading.innerHTML='Projects';
     projectListContainer.appendChild(projectHeading);
-    const projectList = document.createElement('ol');
-    projectList.setAttribute = ('id', 'projectList');
+    const projectList = document.createElement('table')
+    projectList.id = 'projectList';
     projectListContainer.appendChild(projectList);
     const addProject = createBtn('addProject', '+ New Project')
     projectListContainer.appendChild(addProject);
@@ -113,13 +113,13 @@ function loadPage(){
     const table = createTable()
     main.appendChild(table)
     //add btn
-    const addBtn = createBtn('add', '+');
+    const addBtn = createBtn('addItem', '+');
     main.appendChild(addBtn);  
     //footer
     const footer = createFooter();
     content.appendChild(footer);
 
-    console.log(document.querySelector("#empty"))
+   
 }
 
 
