@@ -66,6 +66,9 @@ function createMain(){
 function createTable(){
     const tableContainer = document.createElement('div');
     tableContainer.setAttribute('id', 'tableContainer');
+    const tableHeader = document.createElement('h2');
+    tableHeader.setAttribute('id', 'tableHeader');
+    tableContainer.appendChild(tableHeader)
     const tableBody = document.createElement('table');
     tableBody.setAttribute('id', 'itemTable');
     tableContainer.appendChild(tableBody)

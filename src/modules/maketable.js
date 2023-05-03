@@ -12,6 +12,7 @@ function loadTable() {
   const $status = document.querySelector("#status");
   const $table = document.querySelector("#itemTable");
   const $empty = document.querySelector("#empty");
+  const $tableHeader = document.querySelector('#tableHeader');
   const $projectTitle = document.getElementById("projectFormInputTitle");
 
   //add task Btn
@@ -175,7 +176,7 @@ function loadTable() {
     } else {
       $empty.style.display = "inherit";
     }
-
+    $tableHeader.innerHTML = filterOn
     document.querySelector("#itemTable").innerHTML = "";
 
     myList.forEach((item) => {
