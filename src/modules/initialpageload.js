@@ -8,6 +8,9 @@ function createHeader(){
     titleText.setAttribute('id', 'titleText')
     titleText.textContent = "To Do List";
     header.appendChild(titleText);
+    const dropDown = document.createElement('button');
+    dropDown.setAttribute('id', 'dropDown');
+    header.appendChild(dropDown);
 
     return header;
 }
